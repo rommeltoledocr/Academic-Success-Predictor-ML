@@ -118,4 +118,8 @@ The dataset was divided into **80% training data** and **20% testing data**. The
 
 ## References
 
-Wongvorachan, T., He, S., & Bulut, O. (2023). *A comparison of undersampling, oversampling, and SMOTE methods for dealing with imbalanced classification in educational data mining*. **Information, 14**(1), 54. https://doi.org/10.3390/info14010054
+alejandraa-cruiz. (n.d.). MushroomClassification [Source code]. GitHub. Retrieved May 31, 2026, from https://github.com/alejandraa-cruiz/MushroomClassification
+
+Hashim, A. S., Awadh, W. A., & Hamoud, A. K. (2020). Student performance prediction model based on supervised machine learning algorithms. IOP Conference Series: Materials Science and Engineering, 928(3), Article 032019. https://doi.org/10.1088/1757-899X/928/3/032019
+
+Wongvorachan, T., He, S., & Bulut, O. (2023). A comparison of undersampling, oversampling, and SMOTE methods for dealing with imbalanced classification in educational data mining. Information, 14(1), 54. https://doi.org/10.3390/info14010054
