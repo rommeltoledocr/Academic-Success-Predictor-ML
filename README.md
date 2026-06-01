@@ -60,19 +60,59 @@ The dataset originally contains the following attributes:
 
 ---
 
-## Data Preprocessing
+## Data Analysis
 
-As the goal of the project is to create a model capable of making an early prediction of whether a student is at risk of dropping out, all attributes related to the faculty of origin, macroeconomic factors of the country of origin, and academic attributes not related to the students' academic starting point were removed.
+The most important step in building a model that works as expected is understanding the data being used. To achieve this, several exploratory analyses were performed, including reviewing sample instances and verifying that the dataset did not contain missing values.
 
-Since the target variable includes **"Enrolled"**, a state that neither indicates whether students are at risk of dropping out nor whether they have a strong chance of graduating, it was decided to remove all rows containing this value.
+Afterwards, the categorical features were analyzed to understand the imbalances present among the different categories.
 
-Finally, the target variable was encoded into numerical labels with **LabelEncoder**, and **One-Hot Encoding** was used to transform the numeric labels into a numeric vector.
+<p align="center">
+  <img src="categorical_features_barcharts.png" alt="Categorical Features Distribution" width="90%" />
+  <br>
+  <em>Figure 1. Distribution of categorical features across the dataset.</em>
+</p>
+
+The distributions of the numerical features were also analyzed to identify where the majority of the data was concentrated.
+
+<p align="center">
+  <img src="continuous_features_histograms.png" alt="Numerical Features Distribution" width="90%" />
+  <br>
+  <em>Figure 2. Distribution of numerical features across the dataset.</em>
+</p>
+
+From both analyses, it can be clearly observed that most instances are concentrated around common categories or specific numerical ranges. This indicates that the dataset is highly imbalanced, which, according to the literature, is a common challenge when working with educational datasets.
+
+Lastly, a Correlation Matrix was generated to identify variables that could potentially be redundant. However, it is important to note that since all attributes are already encoded, the Correlation Matrix can be misleading if interpreted incorrectly.
+
+<p align="center">
+  <img src="simplified_correlation_matrix.png" alt="Simplified Correlation Matrix" width="90%" />
+  <br>
+  <em>Figure 3. Simplified correlation matrix showing relationships between variables.</em>
+</p>
 
 ---
 
-## Split
+## Preprocessing
 
-The data was split into **80% training** and **20% testing**, while maintaining similar proportions for the **target** variable.
+As stated before, the goal of this project is to build a model capable of making an early prediction of whether a student is at risk of dropping out, based on general conditions available at the beginning of their academic journey.
+
+To support this objective, several attributes were removed. These included:
+
+* Attributes containing information that would not be available at the student's starting point.
+* Attributes that were too specific to the institution where the data was collected.
+* Macroeconomic factors related to the student's country of origin.
+
+Additionally, the **Nationality** attribute was removed due to its high correlation with the **International** attribute. This decision was made because the **International** attribute already captures the potential challenges a student may face while studying in a country other than their own. Furthermore, **Nationality** presented a highly biased distribution and was therefore considered more likely to introduce noise than meaningful information.
+
+Any instances belonging to the **Enrolled** category were also removed, as they did not represent a definitive outcome and therefore could not contribute to a clear classification objective.
+
+Finally, the target variable was encoded into numerical labels. Since only two target categories remained after preprocessing, it was not necessary to use One-Hot Encoding. Instead, the labels were manually encoded.
+
+---
+
+## Train-Test Split
+
+The dataset was divided into **80% training data** and **20% testing data**. The `stratify` parameter was used during the split to preserve the original class distribution of the target variable in both subsets, ensuring that the proportion of each class remained consistent across the training and testing sets.
 
 ---
 
