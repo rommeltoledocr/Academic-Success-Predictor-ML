@@ -67,7 +67,7 @@ The most important step in building a model that works as expected is understand
 Afterwards, the categorical features were analyzed to understand the imbalances present among the different categories.
 
 <p align="center">
-  <img src="categorical_features_barcharts.png" alt="Categorical Features Distribution" width="90%" />
+  <img src="categorical features barchars.png" alt="Categorical Features Distribution" width="90%" />
   <br>
   <em>Figure 1. Distribution of categorical features across the dataset.</em>
 </p>
@@ -75,7 +75,7 @@ Afterwards, the categorical features were analyzed to understand the imbalances 
 The distributions of the numerical features were also analyzed to identify where the majority of the data was concentrated.
 
 <p align="center">
-  <img src="continuous_features_histograms.png" alt="Numerical Features Distribution" width="90%" />
+  <img src="continuous features histograms.png" alt="Numerical Features Distribution" width="90%" />
   <br>
   <em>Figure 2. Distribution of numerical features across the dataset.</em>
 </p>
@@ -85,7 +85,7 @@ From both analyses, it can be clearly observed that most instances are concentra
 Lastly, a Correlation Matrix was generated to identify variables that could potentially be redundant. However, it is important to note that since all attributes are already encoded, the Correlation Matrix can be misleading if interpreted incorrectly.
 
 <p align="center">
-  <img src="simplified_correlation_matrix.png" alt="Simplified Correlation Matrix" width="90%" />
+  <img src="simplified correlation matrix.png" alt="Simplified Correlation Matrix" width="90%" />
   <br>
   <em>Figure 3. Simplified correlation matrix showing relationships between variables.</em>
 </p>
