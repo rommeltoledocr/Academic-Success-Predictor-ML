@@ -108,6 +108,14 @@ Any instances belonging to the **Enrolled** category were also removed, as they 
 
 Finally, the target variable was encoded into numerical labels. Since only two target categories remained after preprocessing, it was not necessary to use One-Hot Encoding. Instead, the labels were manually encoded.
 
+### Feature Scaling
+
+Machine Learning Models are sensible to magnitudes, this is the reason scaling is used, to preserve the importance of the changes, without biasing the model towards big numbers. 
+
+But scaling should only be done on continuous features where order implies something, as on other cases, it alters the information the model should have received.
+
+Because of this, scaling was applied only on the isolated continuous features, and afterwards, they were concatenated back together.
+
 ---
 
 ## Train-Test Split
