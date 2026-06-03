@@ -177,7 +177,7 @@ On the other hand, the model achieved an **AUC of 0.81**, indicating a decent ab
 
 The model did not achieve the same Accuracy or AUC reported by Hashim et al. (2020). This difference is likely explained by differences in dataset structure, target definition, class distribution, feature selection, or hyperparameter configuration.
 
-As the model already appears to reach a relatively stable level of performance, future work should focus on improving its ability to better distinguish between the **Graduate** and **Dropout** classes, rather than solely pursuing higher recall or overall performance metrics.
+As the model already appears to reach a relatively stable level of performance, future work should focus on improving its ability to better distinguish between the **Graduate** and **Dropout** classes, rather than solely pursuing higher recall or overall performance results.
 
 ---
 
