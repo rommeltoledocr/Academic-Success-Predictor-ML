@@ -171,7 +171,6 @@ On the other hand, the model achieved an **AUC of 0.82**, indicating a decent ab
 
 <p align="center">
   <img src="./confusion matrix and roc.png" alt="Confusion Matrix and ROC" width="45%" />
-  <img src="./roc_curve.png" alt="ROC Curve" width="45%" />
   <br>
   <em>Figure 5. Confusion Matrix and ROC Curve of the Logistic Regression model.</em>
 </p>
