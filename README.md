@@ -124,6 +124,64 @@ The dataset was divided into **80% training data** and **20% testing data**. The
 
 ---
 
+## Evaluation Metrics
+
+As educational datasets have a tendency to be imbalanced, accuracy alone can be misleading if the model performs better on the majority class. For this reason, we evaluated our model using **Precision**, **Recall**, **F1-Score**, and **AUC**, following the type of metrics used in related literature (Hashim et al., 2020; Wongvorachan et al., 2023; Bujang et al., 2021).
+
+- **Precision:** Measures how many students predicted as Graduate or Dropout actually belonged to that class. In our case, it indicates how reliable the model is when predicting that a student is at risk of dropping out.
+- **Recall:** Measures how many of the actual students were correctly identified as Graduate or Dropout by the model. For us, it shows how many real dropout cases were successfully detected.
+- **F1-Score:** Combines Precision and Recall into a single metric, providing a general evaluation of the model's performance.
+- **AUC (Area Under the ROC Curve):** Measures the model's ability to distinguish between both classes across different classification thresholds. The higher the value, the better the model is at separating Graduate from Dropout cases.
+
+Other metrics such as **TP Rate**, **FP Rate**, and **Accuracy** were also considered. However, they were not included in the final evaluation because they either overlap with information already provided by the selected metrics or are less informative when dealing with imbalanced datasets.
+
+## Logistic Regression Model (Baseline Model)
+
+A Logistic Regression model was used as the baseline model. This decision was based on the study by Hashim et al. (2020), where several supervised machine learning algorithms were compared for student performance prediction using demographic, academic background, and behavioral features. Their results showed that Logistic Regression achieved the best performance among the evaluated algorithms.
+
+### Architecture
+
+The model was implemented using Keras. It consists of a single output layer and contains no hidden layers. This means that the input features are directly connected to the output neuron, which returns the probability of a student belonging to either the **Dropout** or **Graduate** class.
+
+### Hyperparameters
+
+- **Epochs:** 50
+- **Batch Size:** 32
+- **Threshold:** 0.35
+- **Activation Function:** Sigmoid
+- **Loss Function:** Binary Cross-Entropy
+
+### Evaluation
+
+The model was evaluated with a threshold of **0.35**. The reason for selecting a relatively low threshold is to identify as many students at risk of dropping out as possible, as failing to take the necessary measures could negatively impact their academic careers and future opportunities. The tradeoff is a higher likelihood of generating false alarms and, consequently, misusing institutional resources.
+
+Across the training history of the model, we can observe that accuracy was often higher on the validation set than on the training set, while the validation loss remained lower than the training loss.
+
+Another important observation is that accuracy oscillates noticeably around a central point. This behavior may indicate that the model is overcorrecting during training and suggests that, under the current configuration, the model does not require many epochs to reach its best performance.
+
+<p align="center">
+  <img src="./model accuracy loss history.png" alt="Model Accuracy and Loss History" width="90%" />
+  <br>
+  <em>Figure 4. Training and validation accuracy and loss across epochs.</em>
+</p>
+
+The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **78%** of the students who are actually at risk of dropping out. This comes at the cost of incorrectly labeling **132 out of 442 students** who actually belonged to the **Graduate** class.
+
+On the other hand, the model achieved an **AUC of 0.82**, indicating a decent ability to distinguish between the target classes across different classification thresholds.
+
+<p align="center">
+  <img src="./confusion matrix and roc.png" alt="Confusion Matrix and ROC" width="45%" />
+  <img src="./roc_curve.png" alt="ROC Curve" width="45%" />
+  <br>
+  <em>Figure 5. Confusion Matrix and ROC Curve of the Logistic Regression model.</em>
+</p>
+
+The model did not achieve the same Accuracy or AUC reported by Hashim et al. (2020). This difference is likely explained by differences in dataset structure, target definition, class distribution, feature selection, or hyperparameter configuration.
+
+As the model already appears to reach a relatively stable level of performance, future work should focus on improving its ability to better distinguish between the **Graduate** and **Dropout** classes, rather than solely pursuing higher recall or overall performance metrics.
+
+---
+
 ## References
 
 alejandraa-cruiz. (n.d.). MushroomClassification [Source code]. GitHub. Retrieved May 31, 2026, from https://github.com/alejandraa-cruiz/MushroomClassification
