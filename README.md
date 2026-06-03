@@ -155,9 +155,9 @@ The model was implemented using Keras. It consists of a single output layer and 
 
 The model was evaluated with a threshold of **0.35**. The reason for selecting a relatively low threshold is to identify as many students at risk of dropping out as possible, as failing to take the necessary measures could negatively impact their academic careers and future opportunities. The tradeoff is a higher likelihood of generating false alarms and, consequently, misusing institutional resources.
 
-Across the training history of the model, we can observe that accuracy was often higher on the validation set than on the training set, while the validation loss remained lower than the training loss.
+Across the training history of the model, we can observe that the accuracy and loss of the validation were hand-in-hand with the one of the testing, sometimes oscillating around it. This means the model doesn't show signs of overfitting or underfitting.
 
-Another important observation is that accuracy oscillates noticeably around a central point. This behavior may indicate that the model is overcorrecting during training and suggests that, under the current configuration, the model does not require many epochs to reach its best performance.
+Another important observation is that accuracy increases quickly and stabilizies after a few epochs, which means the model isn't only learning meaningful patterns, but it also quickly converges into a stable solution, which means, given the current configuration and dataset, it's likely close to its performance ceiling. And because it reaches it quickly, 50 epochs is most likely unnecesary.
 
 <p align="center">
   <img src="./model accuracy loss history.png" alt="Model Accuracy and Loss History" width="90%" />
@@ -165,9 +165,9 @@ Another important observation is that accuracy oscillates noticeably around a ce
   <em>Figure 4. Training and validation accuracy and loss across epochs.</em>
 </p>
 
-The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **78%** of the students who are actually at risk of dropping out. This comes at the cost of incorrectly labeling **132 out of 442 students** who actually belonged to the **Graduate** class.
+The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **77%** of the students who are actually at risk of dropping out. This comes at the cost of incorrectly labeling **218 out of 284 students** who actually belonged to the **Graduate** class.
 
-On the other hand, the model achieved an **AUC of 0.82**, indicating a decent ability to distinguish between the target classes across different classification thresholds.
+On the other hand, the model achieved an **AUC of 0.81**, indicating a decent ability to distinguish between the target classes across different classification thresholds.
 
 <p align="center">
   <img src="./confusion matrix and roc.png" alt="Confusion Matrix and ROC" width="45%" />
