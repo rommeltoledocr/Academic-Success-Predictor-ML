@@ -220,9 +220,9 @@ Neither of the two experiments showed that the class imbalance is the primary fa
 
 | Model    | Precision (Dropout) | Recall (Dropout) | F1 (Dropout) |   AUC |
 | -------- | ------------------: | ---------------: | -----------: | ----: |
-| Baseline |                0.61 |             0.79 |         0.69 | 0.813 |
+| Baseline |                0.62 |             0.77 |         0.69 | 0.808 |
 | ROS      |                0.57 |             0.82 |         0.68 | 0.815 |
-| SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.810 |
+| SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.809 |
 
 The training history shows that the training and validation metrics remain close throughout most epochs, with almost no underfitting or overfitting. The final model already achieves a recall of approximately 70% for Graduate students and 77% for Dropout students, maintaining the slight bias toward identifying students at risk of dropping out that is needed.
 
