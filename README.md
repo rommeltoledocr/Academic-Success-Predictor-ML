@@ -188,6 +188,42 @@ As the model already appears to reach a relatively stable level of performance, 
 
 ---
 
+## Logistic Regression Model (Refinement Attempt 1: Random Oversampling)
+
+[Google Colab Notebook](https://colab.research.google.com/drive/1nuvm3LFewGHWe5JLWyW3MC4tEdfFl3ik?usp=sharing)
+
+Based on the findings reported by Wongvorachan, He, and Bulut (2023), an attempt was made to improve the model by reducing class imbalance through the use of **Random Oversampling (ROS)**.
+
+The objective was to to increase the representation of the minority class (Dropout) during training.
+
+The model did not only showed marginal improvements on **recall**, but it also diminished on **precision**, **F1-score**, and **stability**.
+
+These results suggest that the current level of class imbalance is not significantly limiting the model's predictive performance.
+
+---
+
+## Logistic Regression Model (Refinement Attempt 2: SMOTE-NC)
+
+[Google Colab Notebook](https://colab.research.google.com/drive/1qNMMk3W2h5FRHkToIwyXxmm9iVH-oIIz?usp=sharing)
+
+Following the recommendations presented in the same study, a second refinement experiment was conducted using **SMOTE-NC (Synthetic Minority Over-sampling Technique for Nominal and Continuous Features)**.
+
+It generates synthetic samples for the minority class, instead of duplicating existing observations like ROS, with the goal of improving class representation while reducing the risk of overfitting associated with traditional oversampling methods.
+
+However, the results obtained with SMOTE-NC were inferior to both the baseline model and the ROS experiment.
+
+### Conclusions
+
+Neither of the two experiments showed that the class imbalance is the primary factor for limiting the performance of the model. This likely comes due to having a moderate class distribution (approximately 60% Graduate and 40% Dropout), a less bias distribution than the papers.
+
+| Model    | Precision (Dropout) | Recall (Dropout) | F1 (Dropout) |   AUC |
+| -------- | ------------------: | ---------------: | -----------: | ----: |
+| Baseline |                0.61 |             0.79 |         0.69 | 0.813 |
+| ROS      |                0.57 |             0.82 |         0.68 | 0.815 |
+| SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.810 |
+
+---
+
 ## References
 
 alejandraa-cruiz. (n.d.). MushroomClassification [Source code]. GitHub. Retrieved May 31, 2026, from https://github.com/alejandraa-cruiz/MushroomClassification
