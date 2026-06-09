@@ -172,7 +172,7 @@ Another important observation is that accuracy increases quickly and stabilizes 
 _It is important to note that the test accuracy reported by Keras uses the default threshold of 0.50, while the classification report was generated using the adjusted threshold of 0.35. The accuracy values are not directly identical._
 
 
-The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **77%** of the students who actually dropped out, equivalent to around 2018 out of 284 dropout cases.
+The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **77%** of the students who actually dropped out, equivalent to around 218 out of 284 dropout cases.
 
 On the other hand, the model achieved an **AUC of 0.81**, indicating a decent ability to distinguish between the target classes across different classification thresholds.
 
