@@ -234,6 +234,14 @@ Due to this, no further attempts to improve the model were made.
 
 ---
 
+## Model Testing
+
+The final model can be tested and used for predictions through the following Google Colab notebook:
+
+🔗 https://colab.research.google.com/drive/1R0aSawSsxE3RkHDhGentxrZI2gTyhMsC?usp=sharing
+
+---
+
 ## References
 
 alejandraa-cruiz. (n.d.). MushroomClassification [Source code]. GitHub. Retrieved May 31, 2026, from https://github.com/alejandraa-cruiz/MushroomClassification
