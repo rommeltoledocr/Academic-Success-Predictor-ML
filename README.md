@@ -106,11 +106,15 @@ Additionally, the **Nationality** attribute was removed due to its high correlat
 
 Any instances belonging to the **Enrolled** category were also removed, as they did not represent a definitive outcome and therefore could not contribute to a clear classification objective.
 
+After removing the Enrolled class, the dataset contained 3,630 instances:
+- Graduate: 2,209
+- Dropout: 1,421
+
 Finally, the target variable was encoded into numerical labels. Since only two target categories remained after preprocessing, it was not necessary to use One-Hot Encoding. Instead, the labels were manually encoded.
 
 ### Feature Scaling
 
-Machine Learning Models are sensible to magnitudes, this is the reason scaling is used, to preserve the importance of the changes, without biasing the model towards big numbers. 
+Machine Learning Models are sensitive to feature magnitudes, this is the reason scaling is used, to preserve the importance of the changes, without biasing the model towards big numbers. 
 
 But scaling should only be done on continuous features where order implies something, as on other cases, it alters the information the model should have received.
 
@@ -155,9 +159,9 @@ The model was implemented using Keras. It consists of a single output layer and 
 
 The model was evaluated with a threshold of **0.35**. The reason for selecting a relatively low threshold is to identify as many students at risk of dropping out as possible, as failing to take the necessary measures could negatively impact their academic careers and future opportunities. The tradeoff is a higher likelihood of generating false alarms and, consequently, misusing institutional resources.
 
-Across the training history of the model, we can observe that the accuracy and loss of the validation were hand-in-hand with the one of the testing, sometimes oscillating around it. This means the model doesn't show signs of overfitting or underfitting.
+Across the training history of the model, we can observe that the accuracy and loss of the validation were hand-in-hand with the one of the training, sometimes oscillating around it. This means the model doesn't show signs of overfitting or underfitting.
 
-Another important observation is that accuracy increases quickly and stabilizies after a few epochs, which means the model isn't only learning meaningful patterns, but it also quickly converges into a stable solution, which means, given the current configuration and dataset, it's likely close to its performance ceiling. And because it reaches it quickly, 50 epochs is most likely unnecesary.
+Another important observation is that accuracy increases quickly and stabilizes after a few epochs, which means the model isn't only learning meaningful patterns, but it also quickly converges into a stable solution, which means, given the current configuration and dataset, it's likely close to its performance ceiling. And because it reaches it quickly, 50 epochs is most likely unnecessary.
 
 <p align="center">
   <img src="./model accuracy loss history.png" alt="Model Accuracy and Loss History" width="90%" />
@@ -165,7 +169,10 @@ Another important observation is that accuracy increases quickly and stabilizies
   <em>Figure 4. Training and validation accuracy and loss across epochs.</em>
 </p>
 
-The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **77%** of the students who are actually at risk of dropping out. This comes at the cost of incorrectly labeling **218 out of 284 students** who actually belonged to the **Graduate** class.
+_It is important to note that the test accuracy reported by Keras uses the default threshold of 0.50, while the classification report was generated using the adjusted threshold of 0.35. The accuracy values are not directly identical._
+
+
+The recall achieved for the **Dropout** class shows that the model successfully identifies approximately **77%** of the students who actually dropped out, equivalent to around 2018 out of 284 dropout cases.
 
 On the other hand, the model achieved an **AUC of 0.81**, indicating a decent ability to distinguish between the target classes across different classification thresholds.
 
