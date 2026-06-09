@@ -141,6 +141,8 @@ Other metrics such as **TP Rate**, **FP Rate**, and **Accuracy** were also consi
 
 ## Logistic Regression Model (Baseline Model)
 
+[Google Colab Notebook](https://colab.research.google.com/drive/1rJd0RU-_aptsimCJQfmdmfpguI1dz40Z?usp=sharing)
+
 A Logistic Regression model was used as the baseline model. This decision was based on the study by Hashim et al. (2020), where several supervised machine learning algorithms were compared for student performance prediction using demographic, academic background, and behavioral features. Their results showed that Logistic Regression achieved the best performance among the evaluated algorithms.
 
 ### Architecture
@@ -212,7 +214,7 @@ It generates synthetic samples for the minority class, instead of duplicating ex
 
 However, the results obtained with SMOTE-NC were inferior to both the baseline model and the ROS experiment.
 
-### Conclusions
+## Conclusions
 
 Neither of the two experiments showed that the class imbalance is the primary factor for limiting the performance of the model. This likely comes due to having a moderate class distribution (approximately 60% Graduate and 40% Dropout), a less bias distribution than the papers.
 
@@ -221,6 +223,14 @@ Neither of the two experiments showed that the class imbalance is the primary fa
 | Baseline |                0.61 |             0.79 |         0.69 | 0.813 |
 | ROS      |                0.57 |             0.82 |         0.68 | 0.815 |
 | SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.810 |
+
+The training history shows that the training and validation metrics remain close throughout most epochs, with almost no underfitting or overfitting. The final model already achieves a recall of approximately 70% for Graduate students and 77% for Dropout students, maintaining the slight bias toward identifying students at risk of dropping out that is needed.
+
+Through this and the marginal improvements observed in the previous attempts, we can infer that the Logistic Regression model is already close to its performance limit achievable with the current dataset and feature set.
+
+To obtain better performance, it would most likely be necessary to change or expand the current dataset information, as the LR model has already been shown to be the best option among a variety of different algorithms according to the study conducted by Hashim et al. (2020).
+
+Due to this, no further attempts to improve the model were made.
 
 ---
 
