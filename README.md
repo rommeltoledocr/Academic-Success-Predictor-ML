@@ -186,51 +186,64 @@ On the other hand, the model achieved an **AUC of 0.81**, indicating a decent ab
 
 The model did not achieve the same Accuracy or AUC reported by Hashim et al. (2020). This difference is likely explained by differences in dataset structure, target definition, class distribution, feature selection, or hyperparameter configuration.
 
-As the model already appears to reach a relatively stable level of performance, future work should focus on improving its ability to better distinguish between the **Graduate** and **Dropout** classes, rather than solely pursuing higher recall or overall performance results.
-
 ---
 
-## Logistic Regression Model (Refinement Attempt 1: Random Oversampling)
+## Model Refinement
+
+Two refinement experiments were conducted to determine whether the model's performance was being limited by the class imbalance in the dataset. Although the distribution isn't as extremely imbalanced as the one on the papers, the model still shows certain level of bias toward Graduate students.
+
+The selected refinement techniques were based on the work of Wongvorachan, He, and Bulut (2023), who compare different resampling strategies for imbalanced educational datasets.
+
+## Refinement Attempt 1: Random Oversampling
 
 [Google Colab Notebook](https://colab.research.google.com/drive/1nuvm3LFewGHWe5JLWyW3MC4tEdfFl3ik?usp=sharing)
 
-Based on the findings reported by Wongvorachan, He, and Bulut (2023), an attempt was made to improve the model by reducing class imbalance through the use of **Random Oversampling (ROS)**.
+This first attempt used Random Oversampling (ROS). A technique that increases the representation of the minority class by duplicating examples of the minority-class in the training set.
 
-The objective was to to increase the representation of the minority class (Dropout) during training.
+The goal was to improve the model's ability to recognize **Dropout students**, and its recall.
 
-The model did not only showed marginal improvements on **recall**, but it also diminished on **precision**, **F1-score**, and **stability**.
+The ROS model slightly improved the recall for the **Dropout** class, increasing it from **0.77** in the baseline model to **0.82**. However, this came with a reduction in precision, from **0.61** to **0.57**, and a slight decrease in F1-score, from **0.69** to **0.68**.
 
-These results suggest that the current level of class imbalance is not significantly limiting the model's predictive performance.
+### Selection Decision
+
+This means that even though the model identified more real dropout cases, it also produced more false positives than before. Since the model became less balanced than the baseline model, the improvement in recall did not justify selecting it as the final model.
 
 ---
 
-## Logistic Regression Model (Refinement Attempt 2: SMOTE-NC)
+## Refinement Attempt 2: SMOTE-NC
 
 [Google Colab Notebook](https://colab.research.google.com/drive/1qNMMk3W2h5FRHkToIwyXxmm9iVH-oIIz?usp=sharing)
 
-Following the recommendations presented in the same study, a second refinement experiment was conducted using **SMOTE-NC (Synthetic Minority Over-sampling Technique for Nominal and Continuous Features)**.
+The second attempt used SMOTE-NC, a version of SMOTE designed for datasets that contain both numerical and categorical features. It generates synthetic examples for the minority class.
 
-It generates synthetic samples for the minority class, instead of duplicating existing observations like ROS, with the goal of improving class representation while reducing the risk of overfitting associated with traditional oversampling methods.
+The goal this time was to improve the model's ability to recognize Dropout students more effectively than with the simple duplication.
 
-However, the results obtained with SMOTE-NC were inferior to both the baseline model and the ROS experiment.
+This model achieved a similar dropout recall of **0.82** as the ROS model, but with a slightly decreased precision, F1-score, and AUC, compared to the baseline model.
 
-## Conclusions
+### Selection Decision
 
-Neither of the two experiments showed that the class imbalance is the primary factor for limiting the performance of the model. This likely comes due to having a moderate class distribution (approximately 60% Graduate and 40% Dropout), a less bias distribution than the papers.
+The model was useful in identifying more students as Dropouts, but it decreased the balance between precision and recall, making it not suitable to be the final model.
+
+## Refinement Results Comparison
+
+Neither of the two experiments showed that the class imbalance is the primary factor for limiting the performance of the model. 
 
 | Model    | Precision (Dropout) | Recall (Dropout) | F1 (Dropout) |   AUC |
 | -------- | ------------------: | ---------------: | -----------: | ----: |
-| Baseline |                0.61 |             0.79 |         0.69 | 0.813 |
+| Baseline |                0.62 |             0.77 |         0.69 | 0.808 |
 | ROS      |                0.57 |             0.82 |         0.68 | 0.815 |
-| SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.810 |
+| SMOTE-NC |                0.55 |             0.82 |         0.66 | 0.809 |
 
-The training history shows that the training and validation metrics remain close throughout most epochs, with almost no underfitting or overfitting. The final model already achieves a recall of approximately 70% for Graduate students and 77% for Dropout students, maintaining the slight bias toward identifying students at risk of dropping out that is needed.
+## Final Model
+Since the objective of the project is not only to identify as many dropout students as possible, but also to maintain a useful and reliable early-warning model, the baseline Logistic Regression model was kept as the final model.
 
-Through this and the marginal improvements observed in the previous attempts, we can infer that the Logistic Regression model is already close to its performance limit achievable with the current dataset and feature set.
+## Conclusions
 
-To obtain better performance, it would most likely be necessary to change or expand the current dataset information, as the LR model has already been shown to be the best option among a variety of different algorithms according to the study conducted by Hashim et al. (2020).
+No further attempts to increase the performance were made.
 
-Due to this, no further attempts to improve the model were made.
+The class imbalance doesn't appear to be limiting the model, based on the observations on the previous refinement attempts. And as explained before, the baseline model doesn't present signs of overfitting or underfitting. Therefore, the main limitation did not appear to be caused by poor optimization, excessive complexity, or insufficient training. And as the model converges and stabilizes quickly, more epochs would probably not produce any significant improvements either.
+
+Further improvements would most likely require a different dataset, or more informative features.
 
 ---
 
