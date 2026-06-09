@@ -239,7 +239,7 @@ Since the objective of the project is not only to identify as many dropout stude
 
 ## Conclusions
 
-The class imbalance doesn't appear to be limiting the model, nor the configuration as different batch sizes, numbers of epochs, and classification thresholds were explored, without any significant improvements. And although some of these variations improved the recall of the dropouts class, none kept a similar balance as the baseline.
+The class imbalance doesn't appear to be limiting the model, nor the configuration as different batch sizes, numbers of epochs, and classification thresholds were explored. And although some of these variations improved the recall of the dropouts class, none kept a similar balance as the baseline.
 
 The baseline model doesn't present signs of overfitting or underfitting either. Therefore, the main limitation did not appear to be caused by poor optimization, excessive complexity, or insufficient training. 
 
